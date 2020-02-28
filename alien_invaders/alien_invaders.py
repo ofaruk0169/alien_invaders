@@ -24,17 +24,22 @@ class AlienInvaders:
     def run_game(self):
         "This is the main loop for the game"
         while True:
-            #This watches keyboard and mouse events
-            for event in pygame.event.get():
+            self._check_events()
+            self._update_screen()
+            
+    def _check_events(self):
+        """#This watches keyboard and mouse events"""
+        for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+    def _update_screen(self):
+        """Redraw screen during each pass trhough loop"""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
 
-            #Redraw screen during each pass trhough loop
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
+        #The most recently drawn screen is visible
+        pygame.display.flip()
 
-            #The most recently drawn screen is visible
-            pygame.display.flip()
 
 
 
