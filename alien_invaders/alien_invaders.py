@@ -34,19 +34,28 @@ class AlienInvaders:
                 if event.type == pygame.QUIT:
                     sys.exit()
                 elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RIGHT:
-                        self.ship.moving_right = True
-                    elif event.key == pygame.K_LEFT:
-                        self.ship.moving_left = True
-                        
+                    self._check_keydown_events(event)
                 elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_RIGHT:
-                        self.ship.moving_right = False
-                    elif event.key == pygame.K_LEFT:
-                        self.ship.moving_left = False
-                    #move ship right
+                    self._check_keyup_events(event)
                     
 
+    def _check_keydown_events(self, event):
+
+        """respond to key events"""
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = True
+
+    def _check_keyup_events(self, event):
+
+        """respond to key  when released events"""
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = False
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = False
+        
+        
     def _update_screen(self):
         """Redraw screen during each pass trhough loop"""
         self.screen.fill(self.settings.bg_color)
